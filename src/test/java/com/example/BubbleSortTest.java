@@ -17,13 +17,79 @@ public class BubbleSortTest
         }
     }
 
+    public static void sortedArray(Integer[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+        }
+    }
+
     @Test
-    public void isListSortedBubbleSort() {
+    public void randomArrayTest() {
         int arraySize = 100;
 
         Integer[] unsortedList = new Integer[arraySize];
         randomArray(unsortedList);
 
+        Integer[] tmp = unsortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> bubbleSort = new BubbleSort<>();
+        bubbleSort.sort(unsortedList);
+
+        assertArrayEquals(tmp, unsortedList);
+    }
+
+    @Test
+    public void sortedArrayTest() {
+        int arraySize = 100;
+
+        Integer[] sortedList = new Integer[arraySize];
+        sortedArray(sortedList);
+
+        Integer[] tmp = sortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> bubbleSort = new BubbleSort<>();
+        bubbleSort.sort(sortedList);
+
+        assertArrayEquals(tmp, sortedList);
+    }
+
+    @Test
+    public void randomArrayLargeTest() {
+        int arraySize = 10000;
+
+        Integer[] unsortedList = new Integer[arraySize];
+        randomArray(unsortedList);
+
+        Integer[] tmp = unsortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> bubbleSort = new BubbleSort<>();
+        bubbleSort.sort(unsortedList);
+
+        assertArrayEquals(tmp, unsortedList);
+    }
+
+    @Test
+    public void sortedArrayLargeTest() {
+        int arraySize = 10000000;
+
+        Integer[] sortedList = new Integer[arraySize];
+        sortedArray(sortedList);
+
+        Integer[] tmp = sortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> bubbleSort = new BubbleSort<>();
+        bubbleSort.sort(sortedList);
+
+        assertArrayEquals(tmp, sortedList);
+    }
+
+    @Test 
+    public void emptyArrayTest(){
+        Integer[] unsortedList = new Integer[0];
         Integer[] tmp = unsortedList.clone();
 
         Arrays.sort(tmp);
