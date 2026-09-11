@@ -7,6 +7,7 @@ A small Java project containing implementations of several basic sorting algorit
 The project currently includes:
 
 * Bubble Sort
+* Selection Sort
 
 ## Tests
 

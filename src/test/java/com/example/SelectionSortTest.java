@@ -5,21 +5,119 @@ import java.util.Arrays;
 
 import java.util.Random;
 
+import org.junit.jupiter.api.Test;
+
 
 public class SelectionSortTest {
     
 
-    // @org.junit.Test
-    // public void isListSortedSelectionSort() {
-    //     int arraySize = 100;
+    public static void randomArray (Integer[] array) {
+        Random random = new Random(42);
 
-    //     int[] unsortedList = new int[arraySize];
-    //     randomArray(unsortedList, arraySize);
+        for (int i = 0; i < array.length; i++) {
+            array[i] = random.nextInt(1000);
+        }
+    }
 
-    //     int[] tmp = unsortedList.clone();
+    public static void sortedArray(Integer[] array) {
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i;
+        }
+    }
 
-    //     Arrays.sort(tmp);
+    @Test
+    public void randomArrayTest() {
+        int arraySize = 100;
 
-    //     assertArrayEquals(tmp, Sorting.SelectionSort(unsortedList, arraySize));
-    // }
+        Integer[] unsortedList = new Integer[arraySize];
+        randomArray(unsortedList);
+
+        Integer[] tmp = unsortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        algorithm.sort(unsortedList);
+
+        assertArrayEquals(tmp, unsortedList);
+    }
+
+    @Test
+    public void sortedArrayTest() {
+        int arraySize = 100;
+
+        Integer[] sortedList = new Integer[arraySize];
+        sortedArray(sortedList);
+
+        Integer[] tmp = sortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        algorithm.sort(sortedList);
+
+        assertArrayEquals(tmp, sortedList);
+    }
+
+    @Test
+    public void randomArrayLargeTest() {
+        int arraySize = 1000;
+
+        Integer[] unsortedList = new Integer[arraySize];
+        randomArray(unsortedList);
+
+        Integer[] tmp = unsortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        algorithm.sort(unsortedList);
+
+        assertArrayEquals(tmp, unsortedList);
+    }
+
+    @Test
+    public void sortedArrayLargeTest() {
+        int arraySize = 1000;
+
+        Integer[] sortedList = new Integer[arraySize];
+        sortedArray(sortedList);
+
+        Integer[] tmp = sortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        algorithm.sort(sortedList);
+
+        assertArrayEquals(tmp, sortedList);
+    }
+
+    @Test 
+    public void emptyArrayTest(){
+        Integer[] unsortedList = new Integer[0];
+        Integer[] tmp = unsortedList.clone();
+
+        Arrays.sort(tmp);
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        algorithm.sort(unsortedList);
+
+        assertArrayEquals(tmp, unsortedList);
+    }
+
+    @Test
+    public void nameTest(){
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        assertEquals("Selection Sort", algorithm.getName());
+    }
+    
+    @Test 
+    public void timeComplexityTest() {
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        ComplexityInfo ci = new ComplexityInfo(Complexity.QUADRATIC, Complexity.QUADRATIC, Complexity.QUADRATIC);
+        assertEquals(ci, algorithm.getTimeComplexity());
+    }
+
+    @Test
+    public void spaceComplexityTest() {
+        SortingAlgorithm<Integer> algorithm = new SelectionSort<>();
+        Complexity c = Complexity.LINEAR;
+        assertEquals(c, algorithm.getSpaceComplexity());
+    }
 }
